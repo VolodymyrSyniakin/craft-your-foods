@@ -25,7 +25,6 @@ com\gmail\vsyniakin\model\View.class
 com\gmail\vsyniakin\repository\impl\UserAccountDAOImpl.class
 com\gmail\vsyniakin\interceptors\RegistrationInterceptor.class
 com\gmail\vsyniakin\repository\interfaces\StepDAO.class
-com\gmail\vsyniakin\config\AddAdmin.class
 com\gmail\vsyniakin\repository\impl\UserDataDAOImpl.class
 com\gmail\vsyniakin\services\interfaces\StepService.class
 com\gmail\vsyniakin\model\enums\TypeIngredient$1.class
