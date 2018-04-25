@@ -1,0 +1,16 @@
+.masthead .text-muted {
+    font-style: italic;
+    padding-top: 10px;
+}
+
+#user_data_menu {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+#authentication_menu {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}

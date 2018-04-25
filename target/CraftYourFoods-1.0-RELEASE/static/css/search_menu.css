@@ -1,0 +1,33 @@
+.search_menu {
+    margin: 5px 5px 5px 5px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border: 1px solid #eaeaea;
+}
+
+.search_menu .row {
+    padding: 0px 5px;
+}
+
+.search_menu .col {
+    padding: 0px 5px;
+}
+
+.search_menu .standard_menu .btn {
+    position: absolute;
+    right: 10px;
+    font-style: italic;
+}
+
+.ingredients_menu {
+    display: none;
+    margin: 5px;
+}
+
+.ingredients_menu .selected_ingredients {
+    margin: 20px 5px 10px 10px;
+}
+
+.ingredients_menu .selected_ingredients p {
+    margin: 10px;
+}

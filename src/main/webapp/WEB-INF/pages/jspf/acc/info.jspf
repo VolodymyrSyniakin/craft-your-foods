@@ -1,0 +1,37 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<div class="acc_info">
+    <div class="info">
+        <p>Логин: ${userAcc.login}</p>
+
+        <c:if test="${edit.equals(true)}"><p>Email: ${userAcc.userData.email}</p></c:if>
+        <p>Дата регистрации: ${userAcc.dateRegistration}</p>
+
+        <c:choose>
+            <c:when test="${edit.equals(true)}">
+                <form action="/acc/save_info" method="post">
+                    <label for="info_edit">О себе:</label>
+                    <input type="hidden" name="idu" class="form-control form-control-sm" value="${userAcc.id}">
+                    <textarea class="form-control" name="info" rows="3" id="info_edit"
+                              placeholder="Напишите о себе...">${userAcc.info}</textarea>
+                    <button class="btn btn-outline-success btn-sm save_info" type="submit">Сохранить</button>
+                </form>
+            </c:when>
+            <c:otherwise>
+                <p>Информация: ${userAcc.info}</p>
+            </c:otherwise>
+        </c:choose>
+    </div>
+
+    <c:if test="${edit.equals(true)}">
+        <form action="/acc/change_password" method="post" class="change_pass">
+            <label for="pass">Изменить пароль:</label>
+            <input type="hidden" name="idu" class="form-control form-control-sm" value="${userAcc.id}">
+            <input type="password" id="pass" name="pass" class="form-control form-control-sm"
+                   placeholder="Введите новый пароль">
+            <input type="password" name="repeat" class="form-control form-control-sm" placeholder="Повторите пароль">
+            <button type="submit" class="btn btn-outline-success btn-sm">Изменить пароль</button>
+        </form>
+    </c:if>
+</div>

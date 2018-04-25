@@ -1,0 +1,50 @@
+.acc_info {
+    margin: 20px;
+    max-width: 400px;
+}
+
+.acc_info p {
+    margin: 15px 0px;
+}
+
+.info {
+    position: relative;
+}
+
+.save_info {
+    right: 5px;
+    margin: 5px 0px;
+    position: absolute;
+}
+
+.change_pass {
+    position: relative;
+    margin-top: 70px;
+}
+
+.change_pass input {
+    margin: 5px 0px;
+}
+
+.change_pass button {
+    right: 5px;
+    margin: 5px 0px;
+    position: absolute;
+}
+
+.acc_info form {
+    margin-top: 20px;
+    max-width: 400px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 3px solid #747e84;
+    max-width: 1000px;
+    text-align: center;
+}
+
+table td, th {
+    border: 2px solid #747e84;
+    padding: 5px 10px;
+}

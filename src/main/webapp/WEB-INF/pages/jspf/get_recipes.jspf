@@ -1,0 +1,42 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<link rel="stylesheet" href="<c:url value="/static/css/get_recipes.css" />">
+
+<c:forEach var="i" begin="0" end="${recipes.size()-1}">
+    <c:if test="${i%3==0}">
+        <div class="card-deck">
+    </c:if>
+
+    <div class="card" id="recipe_${recipes.get(i).id}">
+        <div class="text-center">
+            <img src='/recipe/img/?idr=${recipes.get(i).id}' alt="Card image cap">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><a href="/recipe/?idr=${recipes.get(i).id}">${recipes.get(i).name}</a></h5>
+            <p class="card-text">${(recipes.get(i).getText().length()>75) ? recipes.get(i).getText().substring(0, 75) : recipes.get(i).getText()}...
+                <a href="/recipe/?idr=${recipes.get(i).id}">Подробне</a></p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Сложность: ${recipes.get(i).difficulty.toString()};
+                Время: ${recipes.get(i).timeMin} мин;
+            </small>
+            <div class="form-inline">
+                <small class="text-muted rating_value">Рейтинг: ${recipes.get(i).rating}</small>
+                <ul class="rating" value="${recipes.get(i).rating}">
+                    <li value="1"></li>
+                    <li value="2"></li>
+                    <li value="3"></li>
+                    <li value="4"></li>
+                    <li value="5"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <c:if test="${((i+1)%3==0)||(i==(recipes.size()-1))}">
+        </div>
+    </c:if>
+
+</c:forEach>
+
+<script type="text/javascript" src="<c:url value="/static/js/get_recipes.js" />"></script>

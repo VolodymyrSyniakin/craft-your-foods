@@ -1,0 +1,95 @@
+.steps {
+    display: none;
+    max-height: 400px;
+    background-color: #f8f9fa;
+    overflow: auto;
+    margin: 10px auto;
+}
+
+.steps ol {
+    margin: 10px 10px;
+    padding-left: 30px;
+}
+
+.steps, .ingredients img {
+    cursor: pointer;
+}
+
+.form_recipe li {
+    margin-top: 10px;
+}
+
+.steps .col-sm-11 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.steps .col-sm-1 {
+    padding-left: 10px;
+}
+
+.steps .form-control {
+    width: 100%;
+}
+
+.ingredients .form-control {
+    width: 100%;
+}
+
+.step_add select {
+    max-width: 50px;
+}
+
+.form-group .input-group {
+    margin-top: 16px;
+}
+
+.select_option {
+    padding-left: 15px;
+}
+
+.custom-file {
+    margin: 5px auto;
+    width: 335px;
+}
+
+.image_recipe img {
+    max-width: 335px;
+    max-height: 180px;
+    margin: 10px auto;
+}
+
+.ingredients p {
+    margin: auto;
+    padding-left: 10px;
+    font-size: 14px;
+    text-indent: 10px;
+}
+
+.ingredients {
+    display: none;
+    margin-top: 0px;
+    padding: 10px 0px;
+    background-color: #f8f9fa;
+}
+
+.ingredients .form-row {
+    padding: 10px 0px;
+}
+
+.add_new_ingredient {
+    display: none;
+    overflow: hidden;
+    margin: 10px 0px;
+}
+
+.search_ingr p {
+    margin: 0;
+
+}
+
+.send_button .btn {
+    margin: 15px 15px;
+    position: absolute;
+    right: 0px;
+}

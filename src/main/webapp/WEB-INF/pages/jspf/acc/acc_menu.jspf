@@ -1,0 +1,20 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<div class="row acc_menu">
+    <div class="col">
+        <a class="btn <c:if test="${view!=0}"> btn-light </c:if> btn-sm" href="/acc/?idu=${userAcc.id}">Личные
+            данные</a>
+        <a class="btn <c:if test="${view!=1}"> btn-light </c:if> btn-sm"
+           href="/acc/recipes/?idu=${userAcc.id}">Рецепты</a>
+        <a class="btn <c:if test="${view!=2}"> btn-light </c:if> btn-sm" href="/acc/messages/?idu=${userAcc.id}">Коментарии</a>
+        <c:if test="${userAccount != null}">
+	        <c:if test='${userAccount.userData.role.toString().equals("ROLE_MODERATOR") || userAccount.userData.role.toString().equals("ROLE_ADMIN")}'>
+	            <a class="btn <c:if test="${view!=3}"> btn-light </c:if> btn-sm" href="/acc/moderation">Модерация</a>
+	        </c:if>
+	        <c:if test='${userAccount.userData.role.toString().equals("ROLE_ADMIN")}'>
+	            <a class="btn <c:if test="${view!=4}"> btn-light </c:if> btn-sm" href="/acc/admin">Администрирование</a>
+	        </c:if>
+        </c:if>
+    </div>
+</div>
+

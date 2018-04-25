@@ -1,0 +1,28 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<c:choose>
+    <c:when test='${exc.equals("denied")}'>
+        <script>alert("Доступ к странице закрыт");</script>
+    </c:when>
+    <c:when test='${exc.equals("auth")}'>
+        <script>alert("Выполните вход на сайт или зарегистрируйтесь");</script>
+    </c:when>
+    <c:when test='${exc.equals("noResult")}'>
+        <script>alert("Данные не найдены");</script>
+    </c:when>
+    <c:when test='${exc.equals("noAuth")}'>
+        <script>alert("Неверный email или пароль");</script>
+    </c:when>
+    <c:when test='${exc.equals("illegalArgument")}'>
+        <script>alert("Неверный запрос!");</script>
+    </c:when>
+    <c:when test='${exc.equals("server")}'>
+        <script>alert("Проблема на сервере");</script>
+    </c:when>
+    <c:when test='${exc.equals("unhandled")}'>
+        <script>alert("Ошибка, попробуйте позже");</script>
+    </c:when>
+    <c:when test='${exc.equals("parse")}'>
+        <script>alert("Ошибка обработки данных");</script>
+    </c:when>
+</c:choose>

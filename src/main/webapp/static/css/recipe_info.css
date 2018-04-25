@@ -1,0 +1,94 @@
+.col-md-9 h5 {
+    font-weight: bold;
+}
+
+.description {
+    font-size: 14px;
+    text-indent: 28px;
+}
+
+.description span {
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.steps {
+    background-color: #f8f9fa;
+    overflow: auto;
+    margin: 10px auto;
+}
+
+.steps ol {
+    margin: 10px 0px;
+    font-size: 14px;
+    list-style-position: inside;
+    padding-left: 10px;
+    text-indent: 16px;
+}
+
+.steps li {
+    margin-bottom: 10px;
+}
+
+.ingredients {
+    background-color: #f8f9fa;
+    overflow: auto;
+    margin: 10px auto;
+}
+
+.ingredients ol {
+    margin: 10px 0px;
+    font-size: 14px;
+    list-style-position: inside;
+    padding-left: 10px;
+    text-indent: 16px;
+}
+
+.ingredients li {
+    margin-bottom: 10px;
+}
+
+.reviews {
+    margin: 10px auto;
+    max-width: 400px;
+}
+
+.reviews .btn {
+    margin: 10px 0px;
+}
+
+.reviews ul {
+    margin-top: 20px;
+    list-style-type: none;
+    padding: 0;
+    border: 2px solid #e4e4e4;
+    overflow: auto;
+}
+
+.reviews ol {
+    display: block;
+    text-indent: 16px;
+    border-bottom: 1px solid #ccc;
+    margin: 5px 10px;
+    padding: 10px;
+}
+
+.reviews .reviews_info {
+    font-size: 12px;
+    font-style: italic;
+    color: #696969;
+    text-decoration: underline;
+}
+
+.reviews .review {
+    font-size: 14px;
+    text-indent: 20px;
+}
+
+img {
+    max-width: 325px;
+}
+
+.edit_button {
+    margin-bottom: 15px;
+}
