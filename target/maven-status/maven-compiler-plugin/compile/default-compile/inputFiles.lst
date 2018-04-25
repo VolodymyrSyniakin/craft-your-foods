@@ -47,6 +47,7 @@ D:\repository\craft-your-foods\src\main\java\com\gmail\vsyniakin\services\interf
 D:\repository\craft-your-foods\src\main\java\com\gmail\vsyniakin\repository\interfaces\MessageDAO.java
 D:\repository\craft-your-foods\src\main\java\com\gmail\vsyniakin\repository\interfaces\RecipeDAO.java
 D:\repository\craft-your-foods\src\main\java\com\gmail\vsyniakin\services\impl\MessageServiceImpl.java
+D:\repository\craft-your-foods\src\main\java\com\gmail\vsyniakin\config\AddAdmin.java
 D:\repository\craft-your-foods\src\main\java\com\gmail\vsyniakin\model\enums\TypeRecipe.java
 D:\repository\craft-your-foods\src\main\java\com\gmail\vsyniakin\model\enums\ImportantIngredient.java
 D:\repository\craft-your-foods\src\main\java\com\gmail\vsyniakin\repository\interfaces\UserAccountDAO.java
