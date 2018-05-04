@@ -12,7 +12,7 @@
         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
         <label for="inputPassword" class="sr-only">Пароль</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
-        <button class="btn btn-outline-success btn-block" type="submit" id="login_submit">Ввойти</button>
+        <button class="btn btn-outline-success btn-block" type="submit" id="login_submit">Войти</button>
     </form>
     <form class="form-signin registration" action="/registration_submit"
           <c:if test='${formAuth.equals("registration")}'>style="display:block"</c:if> method="POST">

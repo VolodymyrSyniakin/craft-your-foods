@@ -9,6 +9,7 @@ public class Step {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int position;
+    @Column(length = 1024)
     private String text;
 
     @ManyToOne
