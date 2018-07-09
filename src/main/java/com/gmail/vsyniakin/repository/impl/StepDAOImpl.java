@@ -10,16 +10,16 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class StepDAOImpl implements StepDAO {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
-    @Override
-    public Step getReference(long id) {
-        return entityManager.getReference(Step.class, id);
-    }
+	@Override
+	public Step getReference(long id) {
+		return entityManager.getReference(Step.class, id);
+	}
 
-    @Override
-    public void delete(Step step) {
-        entityManager.remove(step);
-    }
+	@Override
+	public void delete(Step step) {
+		entityManager.remove(step);
+	}
 }

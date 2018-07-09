@@ -10,44 +10,45 @@ import java.util.List;
 
 public interface RecipeService {
 
-    Recipe add(Recipe recipe);
+	Recipe add(Recipe recipe);
 
-    Recipe update(Recipe recipe);
+	Recipe update(Recipe recipe);
 
-    Recipe getRecipe(long id);
+	Recipe getRecipe(long id);
 
-    Recipe getRecipeByIdFetchIngrStepsAcc(long id);
+	Recipe getRecipeByIdFetchIngrStepsAcc(long id);
 
-    Recipe getByIdFetchMessages(long id);
+	Recipe getByIdFetchMessages(long id);
 
-    Recipe getByIdFetchRatingFromUsers(long id);
+	Recipe getByIdFetchRatingFromUsers(long id);
 
-    Recipe getReference(long id);
+	Recipe getReference(long id);
 
-    Recipe getByIdFetchImage(long id);
+	Recipe getByIdFetchImage(long id);
 
-    List<Recipe> getRecipesDescByRating(double minRating, int start, int count);
+	List<Recipe> getRecipesDescByRating(double minRating, int start, int count);
 
-    int count();
+	int count();
 
-    List<Recipe> getRecipesByParameters(TypeRecipe type, DifficultyRecipe difficulty, double rating, int timeMin, List<Ingredient> ingredients, int start, int count);
+	List<Recipe> getRecipesByParameters(TypeRecipe type, DifficultyRecipe difficulty, double rating, int timeMin,
+			List<Ingredient> ingredients, int start, int count);
 
-    int count(TypeRecipe type, DifficultyRecipe difficulty, double rating, int timeMin, List<Ingredient> ingredients);
+	int count(TypeRecipe type, DifficultyRecipe difficulty, double rating, int timeMin, List<Ingredient> ingredients);
 
-    List<Recipe> getRecipesByUserAccount(UserAccount userAccount, int start, int count);
+	List<Recipe> getRecipesByUserAccount(UserAccount userAccount, int start, int count);
 
-    int count(UserAccount userAccount);
+	int count(UserAccount userAccount);
 
-    List<Recipe> getRecipesByModeration(boolean moderation, int start, int count);
+	List<Recipe> getRecipesByModeration(boolean moderation, int start, int count);
 
-    int count(boolean moderation);
+	int count(boolean moderation);
 
-    void delete(long id);
+	void delete(long id);
 
-    List<Recipe> getRecipesByName(String name, int start, int count);
+	List<Recipe> getRecipesByName(String name, int start, int count);
 
-    int count(String name);
+	int count(String name);
 
-    List<Recipe> getRecipesDescByDate (int start, int count);
+	List<Recipe> getRecipesDescByDate(int start, int count);
 
 }

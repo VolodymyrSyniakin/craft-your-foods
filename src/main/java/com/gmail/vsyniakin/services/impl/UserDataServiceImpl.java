@@ -11,37 +11,37 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class UserDataServiceImpl implements UserDataService {
-    @Autowired
-    private UserDataDAO userDataDAO;
+	@Autowired
+	private UserDataDAO userDataDAO;
 
-    @Override
-    public void add(UserData userData) {
-        userDataDAO.add(userData);
-    }
+	@Override
+	public void add(UserData userData) {
+		userDataDAO.add(userData);
+	}
 
-    @Override
-    public void update(UserData userData) {
-        userDataDAO.update(userData);
-    }
+	@Override
+	public void update(UserData userData) {
+		userDataDAO.update(userData);
+	}
 
-    @Override
-    public UserData getByEmail(String email) {
-        return userDataDAO.getByEmail(email);
-    }
+	@Override
+	public UserData getByEmail(String email) {
+		return userDataDAO.getByEmail(email);
+	}
 
-    @Override
-    public UserData getById(long id) {
-        return userDataDAO.getById(id);
-    }
+	@Override
+	public UserData getById(long id) {
+		return userDataDAO.getById(id);
+	}
 
-    @Override
-    public boolean existsByEmail(String email) {
-        return userDataDAO.existsByEmail(email);
-    }
+	@Override
+	public boolean existsByEmail(String email) {
+		return userDataDAO.existsByEmail(email);
+	}
 
-    @Override
-    public String getEmailByUserAccount(UserAccount userAccount) {
-        return userDataDAO.getEmailByUserAccount(userAccount);
-    }
+	@Override
+	public String getEmailByUserAccount(UserAccount userAccount) {
+		return userDataDAO.getEmailByUserAccount(userAccount);
+	}
 
 }

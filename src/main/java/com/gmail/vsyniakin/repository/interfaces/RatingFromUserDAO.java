@@ -6,9 +6,9 @@ import com.gmail.vsyniakin.model.entity.UserAccount;
 
 public interface RatingFromUserDAO {
 
-    RatingFromUser add(RatingFromUser ratingFromUser);
+	RatingFromUser add(RatingFromUser ratingFromUser);
 
-    RatingFromUser update(RatingFromUser ratingFromUser);
+	RatingFromUser update(RatingFromUser ratingFromUser);
 
-    RatingFromUser searchByRecipeAndUser(Recipe recipe, UserAccount userAccount);
+	RatingFromUser searchByRecipeAndUser(Recipe recipe, UserAccount userAccount);
 }

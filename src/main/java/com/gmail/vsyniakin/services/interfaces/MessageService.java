@@ -7,27 +7,27 @@ import com.gmail.vsyniakin.model.entity.UserAccount;
 import java.util.List;
 
 public interface MessageService {
-    Message add(Message message);
+	Message add(Message message);
 
-    Message update(Message message);
+	Message update(Message message);
 
-    Message getMessage(long id);
+	Message getMessage(long id);
 
-    List<Message> getMessagesByRecipeFetchUserAccountAndSortByDate(Recipe recipe, int start, int count);
+	List<Message> getMessagesByRecipeFetchUserAccountAndSortByDate(Recipe recipe, int start, int count);
 
-    int count(Recipe recipe);
+	int count(Recipe recipe);
 
-    List<Message> getMessagesByUserAccountFetchRecipeAndSortByDate(UserAccount userAccount, int start, int count);
+	List<Message> getMessagesByUserAccountFetchRecipeAndSortByDate(UserAccount userAccount, int start, int count);
 
-    int count(UserAccount userAccount);
+	int count(UserAccount userAccount);
 
-    List<Message> getMessagesByModeration(boolean moderation, int start, int count);
+	List<Message> getMessagesByModeration(boolean moderation, int start, int count);
 
-    int count(boolean moderation);
+	int count(boolean moderation);
 
-    void delete(long id);
+	void delete(long id);
 
-    List<Message> getMessageByText(String text, int start, int count);
+	List<Message> getMessageByText(String text, int start, int count);
 
-    int count(String text);
+	int count(String text);
 }

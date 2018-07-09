@@ -44,7 +44,9 @@ public class AuthenticationController {
     }
 
     @RequestMapping("/registration_submit")
-    public String registration(@RequestParam String email, @RequestParam String login, @RequestParam String password, Model model) {
+    public String registration(@RequestParam String email,
+    							@RequestParam String login, 
+    							@RequestParam String password, Model model) {
         if (userDataService.existsByEmail(email)) {
             model.addAttribute("formAuth", "registration");
             model.addAttribute("exists", "email");

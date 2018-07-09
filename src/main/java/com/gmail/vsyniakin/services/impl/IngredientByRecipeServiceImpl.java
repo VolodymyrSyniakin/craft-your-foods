@@ -10,15 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class IngredientByRecipeServiceImpl implements IngredientByRecipeService {
 
-    @Autowired
-    IngredientByRecipeDAO ingredientByRecipeDAO;
+	@Autowired
+	IngredientByRecipeDAO ingredientByRecipeDAO;
 
-    @Override
-    @Transactional
-    public void delete(long id) {
-        IngredientByRecipe ingredientByRecipe = ingredientByRecipeDAO.getReference(id);
-        if (ingredientByRecipe != null) {
-            ingredientByRecipeDAO.delete(ingredientByRecipe);
-        }
-    }
+	@Override
+	@Transactional
+	public void delete(long id) {
+		IngredientByRecipe ingredientByRecipe = ingredientByRecipeDAO.getReference(id);
+		if (ingredientByRecipe != null) {
+			ingredientByRecipeDAO.delete(ingredientByRecipe);
+		}
+	}
 }

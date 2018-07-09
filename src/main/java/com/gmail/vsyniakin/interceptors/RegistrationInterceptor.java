@@ -7,16 +7,17 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RegistrationInterceptor extends HandlerInterceptorAdapter {
 
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String email = request.getParameter("email");
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		String email = request.getParameter("email");
+		String login = request.getParameter("login");
+		String password = request.getParameter("password");
 
-        if (!email.isEmpty() || !login.isEmpty() || !password.isEmpty()) {
-            return super.preHandle(request, response, handler);
-        } else {
-            throw new IllegalArgumentException();
-        }
-    }
+		if (!email.isEmpty() || !login.isEmpty() || !password.isEmpty()) {
+			return super.preHandle(request, response, handler);
+		} else {
+			throw new IllegalArgumentException();
+		}
+	}
 }

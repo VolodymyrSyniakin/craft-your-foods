@@ -1,8 +1,8 @@
 package com.gmail.vsyniakin.model.entity;
 
+import com.gmail.vsyniakin.config.filter.EscapeCharactersInterface;
 import com.gmail.vsyniakin.model.enums.DifficultyRecipe;
 import com.gmail.vsyniakin.model.enums.TypeRecipe;
-
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,225 +11,246 @@ import java.util.*;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
-
-@NamedEntityGraph(name = "recipe.fetchAll", attributeNodes = {
-        @NamedAttributeNode("ingredientsByRecipe"),
-        @NamedAttributeNode("steps"),
-        @NamedAttributeNode("userAccount"),
-})
-
+@NamedEntityGraph(name = "recipe.fetchAll", attributeNodes = { 
+		@NamedAttributeNode("ingredientsByRecipe"),
+		@NamedAttributeNode("steps"), 
+		@NamedAttributeNode("userAccount"), })
 
 @Entity
 @Table(name = "recipes")
-public class Recipe {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String name;
-    @Column(length = 1024)
-    private String text;
-    private double rating;
-    private int timeMin;
+public class Recipe implements EscapeCharactersInterface {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	private String name;
+	@Column(length = 1024)
+	private String text;
+	private double rating;
+	private int timeMin;
 
-    private boolean moderation;
+	private boolean moderation;
 
-    @Temporal(TIMESTAMP)
-    private Date date;
+	@Temporal(TIMESTAMP)
+	private Date date;
 
-    @Enumerated(EnumType.STRING)
-    private TypeRecipe type;
+	@Enumerated(EnumType.STRING)
+	private TypeRecipe type;
 
-    @Enumerated(EnumType.STRING)
-    private DifficultyRecipe difficulty; // enums
+	@Enumerated(EnumType.STRING)
+	private DifficultyRecipe difficulty;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Image image;
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Image image;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    private Set<IngredientByRecipe> ingredientsByRecipe = new HashSet<IngredientByRecipe>();
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+	private Set<IngredientByRecipe> ingredientsByRecipe = new HashSet<IngredientByRecipe>();
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    private Set<Message> messages = new HashSet<>();
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+	private Set<Message> messages = new HashSet<>();
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    private Set<Step> steps = new HashSet<>();
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+	private Set<Step> steps = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_acc_id")
-    private UserAccount userAccount;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "user_acc_id")
+	private UserAccount userAccount;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    private Set<RatingFromUser> ratingFromUsers;
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+	private Set<RatingFromUser> ratingFromUsers;
 
-    public Recipe() {
-    }
+	public Recipe() {
+	}
 
-    public void addLinksToEntities(UserAccount userAccount, Image image) {
-        for (Step step : this.getSteps()) {
-            step.setRecipe(this);
-        }
-        for (IngredientByRecipe ingredientByRecipe : this.getIngredientsByRecipe()) {
-            ingredientByRecipe.setRecipe(this);
-            ingredientByRecipe.getIngredient().getIngredientByRecipes().add(ingredientByRecipe);
-        }
-        addUserAccount(userAccount);
-        if (image != null) {
-            addImage(image);
-        }
-        if (this.getDate() == null) {
-            this.setDate(new Date());
-        }
-        this.moderation = false;
-    }
+	public void addLinksToEntities(UserAccount userAccount, Image image) {
+		for (Step step : this.getSteps()) {
+			step.setRecipe(this);
+		}
+		for (IngredientByRecipe ingredientByRecipe : this.getIngredientsByRecipe()) {
+			ingredientByRecipe.setRecipe(this);
+			ingredientByRecipe.getIngredient().getIngredientByRecipes().add(ingredientByRecipe);
+		}
+		addUserAccount(userAccount);
+		if (image != null) {
+			addImage(image);
+		}
+		if (this.getDate() == null) {
+			this.setDate(new Date());
+		}
+		this.moderation = false;
+	}
 
-    public void updateRating() {
-        double sum = 0;
-        for (RatingFromUser rating : this.ratingFromUsers) {
-            sum = sum + rating.getValue();
-        }
-        this.setRating(new BigDecimal((sum / this.ratingFromUsers.size())).setScale(1, RoundingMode.HALF_UP).doubleValue());
-    }
+	public void updateRating() {
+		double sum = 0;
+		for (RatingFromUser rating : this.ratingFromUsers) {
+			sum = sum + rating.getValue();
+		}
+		this.setRating(
+				new BigDecimal((sum / this.ratingFromUsers.size())).setScale(1, RoundingMode.HALF_UP).doubleValue());
+	}
 
-    public void addUserAccount(UserAccount userAccount) {
-        this.setUserAccount(userAccount);
-        userAccount.getRecipes().add(this);
-    }
+	public void addUserAccount(UserAccount userAccount) {
+		this.setUserAccount(userAccount);
+		userAccount.getRecipes().add(this);
+	}
 
-    public void addImage(Image image) {
-        this.setImage(image);
-        image.setRecipe(this);
-    }
+	public void addImage(Image image) {
+		this.setImage(image);
+		image.setRecipe(this);
+	}
 
-    public void addStep(Step step) {
-        this.getSteps().add(step);
-        step.setRecipe(this);
-    }
+	public void addStep(Step step) {
+		this.getSteps().add(step);
+		step.setRecipe(this);
+	}
 
-    public void addIngredientByRecipe(IngredientByRecipe ingredientByRecipe) {
-        this.getIngredientsByRecipe().add(ingredientByRecipe);
-        ingredientByRecipe.setRecipe(this);
-    }
+	public void addIngredientByRecipe(IngredientByRecipe ingredientByRecipe) {
+		this.getIngredientsByRecipe().add(ingredientByRecipe);
+		ingredientByRecipe.setRecipe(this);
+	}
 
+	public void replaceXssSymbols() {
 
-    public long getId() {
-        return id;
-    }
+		this.name = findAndReplaceSymbols(this.name);
+		this.text = findAndReplaceSymbols(this.text);
 
-    public void setId(long id) {
-        this.id = id;
-    }
+		if (this.ingredientsByRecipe != null) {
+			for (IngredientByRecipe ingredientByRecipe : this.ingredientsByRecipe) {
+				ingredientByRecipe.getIngredient()
+						.setName(findAndReplaceSymbols(ingredientByRecipe.getIngredient().getName()));
+				ingredientByRecipe.getIngredient()
+						.setMeasurement(findAndReplaceSymbols(ingredientByRecipe.getIngredient().getMeasurement()));
+			}
+		}
+		if (this.messages != null) {
+			for (Message msg : this.messages) {
+				msg.setText(findAndReplaceSymbols(msg.getText()));
+			}
+		}
+		if (this.steps != null) {
+			for (Step step : this.steps) {
+				step.setText(findAndReplaceSymbols(step.getText()));
+			}
+		}
+	}
 
-    public String getName() {
-        return name;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public String getText() {
-        return text;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setText(String text) {
-        this.text = text;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public double getRating() {
-        return rating;
-    }
+	public String getText() {
+		return text;
+	}
 
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
 
-    public int getTimeMin() {
-        return timeMin;
-    }
+	public double getRating() {
+		return rating;
+	}
 
-    public void setTimeMin(int timeMin) {
-        this.timeMin = timeMin;
-    }
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
 
-    public DifficultyRecipe getDifficulty() {
-        return difficulty;
-    }
+	public int getTimeMin() {
+		return timeMin;
+	}
 
-    public void setDifficulty(DifficultyRecipe difficulty) {
-        this.difficulty = difficulty;
-    }
+	public void setTimeMin(int timeMin) {
+		this.timeMin = timeMin;
+	}
 
-    public Set<IngredientByRecipe> getIngredientsByRecipe() {
-        return ingredientsByRecipe;
-    }
+	public DifficultyRecipe getDifficulty() {
+		return difficulty;
+	}
 
-    public void setIngredientsByRecipe(Set<IngredientByRecipe> ingredientsByRecipe) {
-        this.ingredientsByRecipe = ingredientsByRecipe;
-    }
+	public void setDifficulty(DifficultyRecipe difficulty) {
+		this.difficulty = difficulty;
+	}
 
-    public Set<Message> getMessages() {
-        return messages;
-    }
+	public Set<IngredientByRecipe> getIngredientsByRecipe() {
+		return ingredientsByRecipe;
+	}
 
-    public void setMessages(Set<Message> messages) {
-        this.messages = messages;
-    }
+	public void setIngredientsByRecipe(Set<IngredientByRecipe> ingredientsByRecipe) {
+		this.ingredientsByRecipe = ingredientsByRecipe;
+	}
 
-    public void setSteps(Set<Step> steps) {
-        this.steps = steps;
-    }
+	public Set<Message> getMessages() {
+		return messages;
+	}
 
-    public Set<Step> getSteps() {
-        return steps;
-    }
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
+	}
 
-    public UserAccount getUserAccount() {
-        return userAccount;
-    }
+	public void setSteps(Set<Step> steps) {
+		this.steps = steps;
+	}
 
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
-    }
+	public Set<Step> getSteps() {
+		return steps;
+	}
 
-    public Image getImage() {
-        return image;
-    }
+	public UserAccount getUserAccount() {
+		return userAccount;
+	}
 
-    public void setImage(Image image) {
-        this.image = image;
-    }
+	public void setUserAccount(UserAccount userAccount) {
+		this.userAccount = userAccount;
+	}
 
-    public TypeRecipe getType() {
-        return type;
-    }
+	public Image getImage() {
+		return image;
+	}
 
-    public void setType(TypeRecipe type) {
-        this.type = type;
-    }
+	public void setImage(Image image) {
+		this.image = image;
+	}
 
-    public Date getDate() {
-        return date;
-    }
+	public TypeRecipe getType() {
+		return type;
+	}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+	public void setType(TypeRecipe type) {
+		this.type = type;
+	}
 
-    public Set<RatingFromUser> getRatingFromUsers() {
-        return ratingFromUsers;
-    }
+	public Date getDate() {
+		return date;
+	}
 
-    public void setRatingFromUsers(Set<RatingFromUser> ratingFromUsers) {
-        this.ratingFromUsers = ratingFromUsers;
-    }
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
-    public boolean isModeration() {
-        return moderation;
-    }
+	public Set<RatingFromUser> getRatingFromUsers() {
+		return ratingFromUsers;
+	}
 
-    public void setModeration(boolean moderation) {
-        this.moderation = moderation;
-    }
+	public void setRatingFromUsers(Set<RatingFromUser> ratingFromUsers) {
+		this.ratingFromUsers = ratingFromUsers;
+	}
 
+	public boolean isModeration() {
+		return moderation;
+	}
+
+	public void setModeration(boolean moderation) {
+		this.moderation = moderation;
+	}
 
 }

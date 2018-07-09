@@ -10,16 +10,16 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class IngredientByRecipeDAOImpl implements IngredientByRecipeDAO {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
-    @Override
-    public void delete(IngredientByRecipe ingredientByRecipe) {
-        entityManager.remove(ingredientByRecipe);
-    }
+	@Override
+	public void delete(IngredientByRecipe ingredientByRecipe) {
+		entityManager.remove(ingredientByRecipe);
+	}
 
-    @Override
-    public IngredientByRecipe getReference(long id) {
-        return entityManager.getReference(IngredientByRecipe.class, id);
-    }
+	@Override
+	public IngredientByRecipe getReference(long id) {
+		return entityManager.getReference(IngredientByRecipe.class, id);
+	}
 }

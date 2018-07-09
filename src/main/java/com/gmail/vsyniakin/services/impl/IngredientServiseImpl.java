@@ -12,18 +12,18 @@ import java.util.List;
 @Service
 public class IngredientServiseImpl implements IngredientService {
 
-    @Autowired
-    private IngredientDAO ingredientDAO;
+	@Autowired
+	private IngredientDAO ingredientDAO;
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<Ingredient> searchByName(String name) {
-        return ingredientDAO.searchByName(name);
-    }
+	@Override
+	@Transactional(readOnly = true)
+	public List<Ingredient> searchByName(String name) {
+		return ingredientDAO.searchByName(name);
+	}
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<Ingredient> getIngredientsById(long[] idArray) {
-        return ingredientDAO.getIngredientsById(idArray);
-    }
+	@Override
+	@Transactional(readOnly = true)
+	public List<Ingredient> getIngredientsById(long[] idArray) {
+		return ingredientDAO.getIngredientsById(idArray);
+	}
 }

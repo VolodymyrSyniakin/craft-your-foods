@@ -4,16 +4,16 @@ import com.gmail.vsyniakin.model.entity.UserAccount;
 import com.gmail.vsyniakin.model.entity.UserData;
 
 public interface UserDataService {
-    void add(UserData userData);
+	void add(UserData userData);
 
-    void update(UserData userData);
+	void update(UserData userData);
 
-    UserData getByEmail(String email);
+	UserData getByEmail(String email);
 
-    UserData getById(long id);
+	UserData getById(long id);
 
-    boolean existsByEmail(String email);
+	boolean existsByEmail(String email);
 
-    String getEmailByUserAccount(UserAccount userAccount);
+	String getEmailByUserAccount(UserAccount userAccount);
 
 }

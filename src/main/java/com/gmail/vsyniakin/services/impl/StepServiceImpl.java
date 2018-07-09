@@ -7,19 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Service
 public class StepServiceImpl implements StepService {
 
-    @Autowired
-    StepDAO stepDAO;
+	@Autowired
+	StepDAO stepDAO;
 
-    @Override
-    @Transactional
-    public void delete(long id) {
-        Step step = stepDAO.getReference(id);
-        if (step != null) {
-            stepDAO.delete(step);
-        }
-    }
+	@Override
+	@Transactional
+	public void delete(long id) {
+		Step step = stepDAO.getReference(id);
+		if (step != null) {
+			stepDAO.delete(step);
+		}
+	}
 }

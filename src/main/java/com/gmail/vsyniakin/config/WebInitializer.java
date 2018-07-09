@@ -23,7 +23,7 @@ public class WebInitializer implements WebApplicationInitializer {
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
-
+        
         FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encoding-filter", characterEncodingFilter);
         encodingFilter.addMappingForUrlPatterns(null, false, "/*");
     }

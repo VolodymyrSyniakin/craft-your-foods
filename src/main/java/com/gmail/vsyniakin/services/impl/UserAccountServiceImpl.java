@@ -14,53 +14,53 @@ import java.util.List;
 @Transactional
 public class UserAccountServiceImpl implements UserAccountService {
 
-    @Autowired
-    UserAccountDAO userAccountDAO;
-    @Autowired
-    UserDataDAO userDataDAO;
+	@Autowired
+	UserAccountDAO userAccountDAO;
+	@Autowired
+	UserDataDAO userDataDAO;
 
-    @Override
-    public boolean existByLogin(String login) {
-        return userAccountDAO.existByLogin(login);
-    }
+	@Override
+	public boolean existByLogin(String login) {
+		return userAccountDAO.existByLogin(login);
+	}
 
-    @Override
-    public UserAccount getReference(long id) {
-        return userAccountDAO.getReference(id);
-    }
+	@Override
+	public UserAccount getReference(long id) {
+		return userAccountDAO.getReference(id);
+	}
 
-    @Override
-    public UserAccount getByIdFetchRecipes(long id) {
-        return userAccountDAO.getByIdFetchRecipes(id);
-    }
+	@Override
+	public UserAccount getByIdFetchRecipes(long id) {
+		return userAccountDAO.getByIdFetchRecipes(id);
+	}
 
-    @Override
-    public UserAccount getByIdFetchMessages(long id) {
-        return userAccountDAO.getByIdFetchMessages(id);
-    }
+	@Override
+	public UserAccount getByIdFetchMessages(long id) {
+		return userAccountDAO.getByIdFetchMessages(id);
+	}
 
-    @Override
-    public UserAccount getByIdFetchRatingFromUser(long id) {
-        return userAccountDAO.getByIdFetchRatingFromUser(id);
-    }
+	@Override
+	public UserAccount getByIdFetchRatingFromUser(long id) {
+		return userAccountDAO.getByIdFetchRatingFromUser(id);
+	}
 
-    @Override
-    public UserAccount getByLogin(String login) {
-        return userAccountDAO.getByLogin(login);
-    }
+	@Override
+	public UserAccount getByLogin(String login) {
+		return userAccountDAO.getByLogin(login);
+	}
 
-    @Override
-    public List<UserAccount> getByLoginFetchUserData(String login) {
-        return userAccountDAO.getByLoginFetchUserData(login);
-    }
+	@Override
+	public List<UserAccount> getByLoginFetchUserData(String login) {
+		return userAccountDAO.getByLoginFetchUserData(login);
+	}
 
-    @Override
-    public UserAccount getByIdFetchUserData(long id) {
-        return userAccountDAO.getByIdFetchUserData(id);
-    }
+	@Override
+	public UserAccount getByIdFetchUserData(long id) {
+		return userAccountDAO.getByIdFetchUserData(id);
+	}
 
-    @Override
-    public UserAccount update(UserAccount userAccount) {
-        return userAccountDAO.update(userAccount);
-    }
+	@Override
+	public UserAccount update(UserAccount userAccount) {
+		return userAccountDAO.update(userAccount);
+	}
 }

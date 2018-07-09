@@ -18,25 +18,25 @@ import java.util.Set;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
-    UserDataService userDataService;
+	@Autowired
+	UserDataService userDataService;
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        UserData userData;
-        try {
-            userData = userDataService.getByEmail(email);
-        } catch (PersistenceException e) {
-            userData = null;
-        }
+		UserData userData;
+		try {
+			userData = userDataService.getByEmail(email);
+		} catch (PersistenceException e) {
+			userData = null;
+		}
 
-        if (userData == null) {
-            throw new UsernameNotFoundException(email + " not found");
-        }
-        Set<GrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority(userData.getRole().toString()));
+		if (userData == null) {
+			throw new UsernameNotFoundException(email + " not found");
+		}
+		Set<GrantedAuthority> roles = new HashSet<>();
+		roles.add(new SimpleGrantedAuthority(userData.getRole().toString()));
 
-        return new User(userData.getEmail(), userData.getPassword(), roles);
-    }
+		return new User(userData.getEmail(), userData.getPassword(), roles);
+	}
 }

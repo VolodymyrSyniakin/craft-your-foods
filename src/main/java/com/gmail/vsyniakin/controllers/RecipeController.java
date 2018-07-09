@@ -72,7 +72,7 @@ public class RecipeController {
 	}
 
 	@RequestMapping("/add_recipe")
-	public String addRecipe(Model model) {
+	public String addRecipePage(Model model) {
 		model.addAttribute("view", VIEW_NEW_RECIPE_PAGE);
 
 		model.addAttribute("difficultyRecipe", DifficultyRecipe.toMap());
@@ -230,6 +230,9 @@ public class RecipeController {
 		try {
 			Recipe recipe = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 					.readValue(strRecipe, Recipe.class);
+
+			recipe.replaceXssSymbols();
+
 			recipe.setDate(new Date());
 			recipe.addLinksToEntities(userAccountService.getByIdFetchRecipes(userAccount.getId()),
 					convertStringToImage(encodeImage));
@@ -254,6 +257,7 @@ public class RecipeController {
 			if (image == null) {
 				image = recipeService.getByIdFetchImage(idr).getImage();
 			}
+			updateRecipe.replaceXssSymbols();
 			updateRecipe.addLinksToEntities(userAccountService.getByIdFetchRecipes(userAccount.getId()), image);
 			updateRecipe = recipeService.update(updateRecipe);
 			return "/recipe/?idr=" + updateRecipe.getId();

@@ -12,24 +12,24 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class RatingFromUserServiceImpl implements RatingFromUserService {
 
-    @Autowired
-    RatingFromUserDAO ratingFromUserDAO;
+	@Autowired
+	RatingFromUserDAO ratingFromUserDAO;
 
-    @Transactional
-    @Override
-    public RatingFromUser add(RatingFromUser ratingFromUser) {
-        return ratingFromUserDAO.add(ratingFromUser);
-    }
+	@Transactional
+	@Override
+	public RatingFromUser add(RatingFromUser ratingFromUser) {
+		return ratingFromUserDAO.add(ratingFromUser);
+	}
 
-    @Transactional
-    @Override
-    public RatingFromUser update(RatingFromUser ratingFromUser) {
-        return ratingFromUserDAO.update(ratingFromUser);
-    }
+	@Transactional
+	@Override
+	public RatingFromUser update(RatingFromUser ratingFromUser) {
+		return ratingFromUserDAO.update(ratingFromUser);
+	}
 
-    @Transactional
-    @Override
-    public RatingFromUser searchByRecipeAndUser(Recipe recipe, UserAccount userAccount) {
-        return ratingFromUserDAO.searchByRecipeAndUser(recipe, userAccount);
-    }
+	@Transactional
+	@Override
+	public RatingFromUser searchByRecipeAndUser(Recipe recipe, UserAccount userAccount) {
+		return ratingFromUserDAO.searchByRecipeAndUser(recipe, userAccount);
+	}
 }
